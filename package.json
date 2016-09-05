@@ -1,6 +1,6 @@
 {
     "name": "karmia-express-middleware-rpc",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Karmia RPC middleware for Express",
     "homepage": "https://github.com/fujimakishouten/karmia-express-middleware-rpc",
     "license": "MIT",
@@ -20,7 +20,7 @@
         "body-parser": ">=1.15.2",
         "eslint": ">=3.4.0",
         "expect.js": ">=0.3.1",
-        "express": "5.0.0-alpha.2",
+        "express": ">=4.14.0",
         "karmia-context": ">=0.5.4",
         "mocha": ">=2.4.5"
     },

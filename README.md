@@ -76,6 +76,6 @@ const http = require('http'),
     };
 
 request({method: 'method', params: {}).then(function (result) {
-    expect(result).to.eql({success: true});
+    console.log(result);
 });
 ```
