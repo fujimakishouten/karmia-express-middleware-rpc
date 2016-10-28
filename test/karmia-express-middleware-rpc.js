@@ -98,10 +98,10 @@ describe('karmia-express-rpc-rpc', function () {
         it('success', function (done) {
             const data = {method: 'success'};
             request(data).then(function (result) {
-                expect(result).to.eql({success: true});
-            });
+                expect(result).to.eql({result: {success: true}});
 
-            done();
+                done();
+            });
         });
 
         it('fail', function (done) {
