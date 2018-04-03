@@ -14,7 +14,7 @@ npm install karmia-express-middleware-rpc
 
 ```JavaScript
 const karmia_express_middleware_rpc = require('karmia-express-middleware-rpc'),
-    rpc = karmia_express_middleware_rpc();
+    rpc = new karmia_express_middleware_rpc();
 rpc.methods.set('method', function () {
     return Promise.resolve({success: true});
 });

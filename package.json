@@ -1,6 +1,6 @@
 {
     "name": "karmia-express-middleware-rpc",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Karmia RPC middleware for Express",
     "homepage": "https://github.com/fujimakishouten/karmia-express-middleware-rpc",
     "license": "MIT",
