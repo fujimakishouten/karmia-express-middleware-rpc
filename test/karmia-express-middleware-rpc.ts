@@ -29,6 +29,7 @@ declare class KarmiaRPCError extends Error {
 
 
 // Variables
+let server: http.Server;
 const expect = require("expect.js");
 const app = Express();
 const rpc = new KarmiaExpressMiddlewareRPC();
@@ -100,9 +101,15 @@ app.use(function (error: KarmiaRPCError, req: Parameters, res: Parameters, next:
     }));
 });
 
-// Listen
-app.listen(30000);
+// Before
+before (function () {
+    server = app.listen(30000);
+});
 
+// After
+after(function () {
+    server.close();
+});
 
 
 describe('karmia-express-rpc-rpc', function () {
