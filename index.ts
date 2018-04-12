@@ -5,8 +5,22 @@
 
 
 
-// Variables
-const karmia_rpc = require('karmia-rpc');
+// Import modules
+import KarmiaRPC = require("karmia-rpc");
+
+// Declarations
+declare interface Methods {
+    [index: string]: Function|object;
+}
+
+declare interface Parameters {
+    [index: string]: any;
+}
+
+declare class KarmiaRPCError {
+    code?: number;
+    data?: any;
+}
 
 
 /**
@@ -16,14 +30,19 @@ const karmia_rpc = require('karmia-rpc');
  */
 class KarmiaExpressMiddlewareRPC {
     /**
+     * Properties
+     */
+    public methods: KarmiaRPC;
+
+    /**
      * Constructor
      *
      * @constructs KarmiaExpressMiddlewareRPC
      * @returns {Object}
      */
-    constructor(options) {
+    constructor(options?: Methods) {
         const self = this;
-        self.methods = new karmia_rpc(options);
+        self.methods = new KarmiaRPC(options || {});
     }
 
     /**
@@ -34,19 +53,19 @@ class KarmiaExpressMiddlewareRPC {
     middleware() {
         const self = this;
 
-        return (req, res, next) => {
+        return (req: Parameters, res: Parameters, next: Function) => {
             if (res.body) {
                 return next();
             }
 
             req.api = true;
             self.methods.emit('api.call', req.body);
-            self.methods.call(req.context, req.body || {}).then((result) => {
+            self.methods.call(req.context, req.body || {}).then((result: Parameters) => {
                 res.code = 200;
                 res.body = result;
 
                 next();
-            }).catch((error) => {
+            }).catch((error: KarmiaRPCError) => {
                 res.code = error.code;
                 res.body = error;
 
@@ -58,7 +77,7 @@ class KarmiaExpressMiddlewareRPC {
 
 
 // Export modules
-module.exports = KarmiaExpressMiddlewareRPC;
+export = KarmiaExpressMiddlewareRPC;
 
 
 
